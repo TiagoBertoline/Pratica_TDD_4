@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Contatos{% endblock %}
+{% block content %}
+<h2>Contatos</h2>
+<a href="{% url 'cadastrar_contato' %}" class="btn btn-primary mb-3">Cadastrar Novo</a>
+
+<table class="table table-striped">
+  <tr>
+    <th>Nome</th>
+    <th>Telefone</th>
+    <th>Email</th>
+    <th>Ações</th>
+  </tr>
+  {% for contato in contatos %}
+  <tr>
+    <td>{{ contato.nome_completo }}</td>
+    <td>{{ contato.telefone }}</td>
+    <td>{{ contato.email }}</td>
+    <td>
+      <a href="{% url 'atualizar_contato' contato.id %}" class="btn btn-warning btn-sm">Editar</a>
+      <a href="{% url 'remover_contato' contato.id %}" class="btn btn-danger btn-sm">Excluir</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">Nenhum contato cadastrado.</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Remover Contato{% endblock %}
+{% block content %}
+<h3>Deseja realmente remover o contato "{{ contato.nome_completo }}"?</h3>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Confirmar</button>
+  <a href="{% url 'listar_contatos' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
